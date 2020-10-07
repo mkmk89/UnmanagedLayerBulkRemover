@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnmanagedLayerBulkRemover</id>
-    <version>1.0.0</version>
+    <version>1.1.0.0</version>
     <title>Unmanaged Active Layer Bulk Remover</title>
     <authors>Maciej Kornacki</authors>
     <owners>Maciej Kornacki</owners>
@@ -14,6 +14,9 @@
     <releaseNotes>XrmToolbox UnmanagedLayerBulkRemover created</releaseNotes>
     <copyright>Maciej Kornacki</copyright>
     <tags>XrmToolBox, Dynamics, Unmanaged, Layer, Remove</tags>
+    <dependencies>
+      <dependency id="XrmToolBox" version="1.2020.2.36" />
+    </dependencies>
   </metadata>
   <files>
     <file src="bin\Release\UnmanagedLayerBulkRemover.dll" target="lib\net47\Plugins\UnmanagedLayerBulkRemover.dll" />

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>UnmanagedLayerBulkRemover</id>
+    <version>1.0.0</version>
+    <title>Unmanaged Active Layer Bulk Remover</title>
+    <authors>Maciej Kornacki</authors>
+    <owners>Maciej Kornacki</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://github.com/mkmk89/UnmanagedLayerBulkRemover</projectUrl>
+    <iconUrl>https://github.com/mkmk89/UnmanagedLayerBulkRemover/raw/master/icon.png</iconUrl>
+    <description>This XrmToolbox plugin can remove unmanaged (active) layers from solution components in bulk. Just add components to solution, run the plugin and remove Active layers automatically.</description>
+    <summary>This XrmToolbox plugin can remove unmanaged (active) layers from solution components in bulk. Just add components to solution, run the plugin and remove Active layers automatically.</summary>
+    <releaseNotes>XrmToolbox UnmanagedLayerBulkRemover created</releaseNotes>
+    <copyright>Maciej Kornacki</copyright>
+    <tags>XrmToolBox, Dynamics, Unmanaged, Layer, Remove</tags>
+  </metadata>
+  <files>
+    <file src="bin\Debug\Plugins\UnmanagedLayerBulkRemover.dll" target="lib\net47\Plugins\UnmanagedLayerBulkRemover.dll" />
+  </files>
+</package>

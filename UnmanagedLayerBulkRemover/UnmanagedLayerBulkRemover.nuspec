@@ -16,6 +16,6 @@
     <tags>XrmToolBox, Dynamics, Unmanaged, Layer, Remove</tags>
   </metadata>
   <files>
-    <file src="bin\Release\Plugins\UnmanagedLayerBulkRemover.dll" target="lib\net47\Plugins\UnmanagedLayerBulkRemover.dll" />
+    <file src="bin\Release\UnmanagedLayerBulkRemover.dll" target="lib\net47\Plugins\UnmanagedLayerBulkRemover.dll" />
   </files>
 </package>

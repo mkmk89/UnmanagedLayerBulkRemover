@@ -1,3 +1,4 @@
+[![Build Status](https://mkotfs.visualstudio.com/My%20Dynamics%20Developments/_apis/build/status/UnmanagedLayerBulkRemover%20Nuget%20publishing%20pipeline?branchName=master)](https://mkotfs.visualstudio.com/My%20Dynamics%20Developments/_build/latest?definitionId=8&branchName=master)
 # Description
 This is XrmToolbox plugin can remove unmanaged (active) layers from solution components in bulk. Just add components to solution, run the plugin and remove Active layers automatically.
 

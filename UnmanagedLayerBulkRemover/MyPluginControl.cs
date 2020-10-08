@@ -17,7 +17,7 @@ using XrmToolBox.Extensibility.Interfaces;
 
 namespace UnmanagedLayerBulkRemover
 {
-    public partial class MyPluginControl : PluginControlBase, IStatusBarMessenger
+    public partial class MyPluginControl : PluginControlBase, IStatusBarMessenger, IGitHubPlugin
     {
         private Settings mySettings;
         public event EventHandler<StatusBarMessageEventArgs> SendMessageToStatusBar;

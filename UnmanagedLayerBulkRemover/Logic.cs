@@ -256,7 +256,7 @@ namespace UnmanagedLayerBulkRemover
                    "PluginAssembly";
                 case 92:
                     return
-                   "SDKMessageProcessingStep";
+                   "SdkMessageProcessingStep";
                 case 93:
                     return
                    "SDKMessageProcessingStepImage";

@@ -53,6 +53,7 @@ namespace UnmanagedLayerBulkRemover
                 int i = 0;
                 foreach (var component in ComponentsResult.Entities)
                 {
+                    result.Add(new LogLine($"Processing component with Id {component.Id} {Environment.NewLine}", Color.Black));
                     //if (worker.CancellationPending)
                     //{
                     //    args.Cancel = true;
@@ -70,7 +71,7 @@ namespace UnmanagedLayerBulkRemover
                             worker.ReportProgress(progress, $"Progress {progress}%");
                             Service.Execute(req);
                             i++;
-                            
+
                             result.Add(new LogLine($"Removing layer {componentName} with Id {component.Id} succeeded{Environment.NewLine}", Color.Green));
                         }
                         catch (Exception ex)
@@ -365,7 +366,7 @@ namespace UnmanagedLayerBulkRemover
                 case 432:
                     return
                    "EntityImageConfiguration";
-                default: throw new Exception("Unsupported component type");
+                default: throw new Exception($"Unsupported component type number {componentType}");
             }
         }
     }

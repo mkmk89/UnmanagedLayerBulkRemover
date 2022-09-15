@@ -44,7 +44,7 @@ namespace UnmanagedLayerBulkRemover
             "WebResource",
             "SiteMap",
             "PluginAssembly",
-            "SDKMessageProcessingStep",
+            "SdkMessageProcessingStep",
             "CanvasApp"
             });
         }

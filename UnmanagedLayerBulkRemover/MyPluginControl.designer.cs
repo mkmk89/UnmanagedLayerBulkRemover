@@ -183,7 +183,7 @@
             "FieldPermission",
             "PluginType",
             "PluginAssembly",
-            "SDKMessageProcessingStep",
+            "SdkMessageProcessingStep",
             "SDKMessageProcessingStepImage",
             "ServiceEndpoint",
             "RoutingRule",

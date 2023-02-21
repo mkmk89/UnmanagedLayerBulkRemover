@@ -64,16 +64,19 @@ namespace UnmanagedLayerBulkRemover
             {
                 LogInfo("Settings found and loaded");
             }
+
+            //Added by Harold Rizaldo - 02/21/2023 - Automatically loads the solutions on page load
+            ExecuteMethod(GetSolutionsMethod);
         }
 
         private void tsbGetSolutions_Click(object sender, EventArgs e)
         {
-            ExecuteMethod(GetSoltuionsMethod);
+            ExecuteMethod(GetSolutionsMethod);
         }
 
 
 
-        private void GetSoltuionsMethod()
+        private void GetSolutionsMethod()
         {
             Logic logic = new Logic(Service);
 
@@ -206,5 +209,51 @@ namespace UnmanagedLayerBulkRemover
             foreach (string value in supportedFilters)
                 clbFilters.SetItemChecked(clbFilters.Items.IndexOf(value), true);
         }
+
+        //Added by Harold Rizaldo - 02/21/2023 - Filter the list of solutions based on the txtSearch.Text value
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            Logic logic = new Logic(Service);
+
+            WorkAsync(new WorkAsyncInfo
+            {
+                Work = (worker, args) =>
+                {
+                    args.Result = logic.GetSolutions();
+                },
+                PostWorkCallBack = (args) =>
+                {
+                    if (args.Error != null)
+                    {
+                        MessageBox.Show(args.Error.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    var result = args.Result as EntityCollection;
+                    string searchTerm = txtSearch.Text;
+                    var filteredResult = result.Entities.Where(x =>
+                        x.Contains("uniquename") && ((string)x.Attributes["uniquename"].ToString().ToLower()).Contains(txtSearch.Text.ToLower())
+                        || x.Contains("friendlyname") && ((string)x.Attributes["friendlyname"].ToString().ToLower()).Contains(txtSearch.Text.ToLower()));
+
+                    unmanagedLayersDataGrid.DataSource = filteredResult.Select(
+                        x => new SolutionItem()
+                        {
+                            UniqueName = x.Contains("uniquename") ? (string)x.Attributes["uniquename"] : string.Empty,
+                            FriendlyName = x.Contains("friendlyname") ? (string)x.Attributes["friendlyname"] : string.Empty,
+                            Version = (string)x.Attributes["version"],
+                            IsManaged = (bool)x.Attributes["ismanaged"] ? "Managed" : "Unmanaged"
+                        }).OrderBy(x => x.UniqueName).ToList();
+                }
+            });
+        }
+        //End Modify
+
+        //Added by Harold Rizaldo - 02/21/2023 - Check/Uncheck all the items in the Checked List Box
+        private void cbAll_CheckedChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < clbFilters.Items.Count; i++)
+            {
+                clbFilters.SetItemChecked(i, cbAll.Checked);
+            }
+        }
+        //End Add
     }
 }

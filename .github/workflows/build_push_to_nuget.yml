@@ -28,7 +28,7 @@ jobs:
 
     - name: Pack NuGet package
       run: |
-        nuget pack UnmanagedLayerBulkRemover/UnmanagedLayerBulkRemover.nuspec.nuspec -Properties Configuration=Release -OutputDirectory ./nuget-output
+        nuget pack UnmanagedLayerBulkRemover/UnmanagedLayerBulkRemover.nuspec -Properties Configuration=Release -OutputDirectory ./nuget-output
 
     - name: Publish to NuGet
       env:

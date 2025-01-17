@@ -29,13 +29,19 @@ jobs:
     - name: Set version
       id: set_version
       run: |
-        # Use only GitHub's build number (GITHUB_RUN_NUMBER) for versioning
-        $PACKAGE_VERSION = "$env:GITHUB_RUN_NUMBER"
+        # Get today's date in yyyy.MM.DD format
+        VERSION_DATE=$(date -u +'%Y.%m.%d')
         
-        Write-Host "Package version: $PACKAGE_VERSION"
-    
+        # Incremental build number (using GitHub run number or a similar method)
+        INCREMENTAL_BUILD_NUMBER=${GITHUB_RUN_NUMBER}
+
+        # Set the full version
+        PACKAGE_VERSION="${VERSION_DATE}.${INCREMENTAL_BUILD_NUMBER}"
+        
+        echo "Package version: $PACKAGE_VERSION"
+
         # Set the version to an environment variable for later steps
-        echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $env:GITHUB_ENV
+        echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
 
     - name: Pack NuGet package
       run: |
@@ -46,5 +52,7 @@ jobs:
 
     - name: Publish to NuGet
       run: |
-        # Ensure the .nupkg file is correctly referenced
-        nuget push ./nuget-output/UnmanagedLayerBulkRemover.${{ env.PACKAGE_VERSION }}.nupkg -Source https://api.nuget.org/v3/index.json -ApiKey ${{ secrets.NUGET_API_KEY }}
+        $packageFiles = Get-ChildItem ./nuget-output/UnmanagedLayerBulkRemover.*.nupkg
+        foreach ($file in $packageFiles) {
+          nuget push $file.FullName -Source https://api.nuget.org/v3/index.json -ApiKey ${{ secrets.NUGET_API_KEY }}
+        }

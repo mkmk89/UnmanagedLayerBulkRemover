@@ -23,7 +23,7 @@ jobs:
     - name: Install Visual Studio Build Tools
       # Ensures MSBuild and .NET Framework tools are available
       run: |
-        choco install visualstudio2022buildtools --version=17.8.5 --params "--add Microsoft.VisualStudio.Workload.ManagedDesktopBuildTools --includeRecommended --includeOptional"
+        choco install visualstudio2022buildtools --params "--add Microsoft.VisualStudio.Workload.ManagedDesktopBuildTools --includeRecommended --includeOptional"
         refreshenv
 
     - name: Build the solution

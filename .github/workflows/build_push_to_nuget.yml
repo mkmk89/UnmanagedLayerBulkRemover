@@ -29,16 +29,11 @@ jobs:
     - name: Set version
       id: set_version
       run: |
-        # Get today's date
-        $date = Get-Date
-        
-        # Format the date to ensure two digits for the month and day
-        $VERSION_DATE = "{0:D4}.{1:D2}.{2:D2}" -f $date.Year, $date.Month, $date.Day
-        
-        # Incremental build number (using GitHub run number or a similar method)
+        # Use the GitHub run number for incremental versioning
+        $VERSION_DATE = Get-Date -Format "yyyy.MM.dd"
         $INCREMENTAL_BUILD_NUMBER = $env:GITHUB_RUN_NUMBER
     
-        # Set the full version
+        # Set the full version as date-based with incremental build number
         $PACKAGE_VERSION = "$VERSION_DATE.$INCREMENTAL_BUILD_NUMBER"
         
         Write-Host "Package version: $PACKAGE_VERSION"

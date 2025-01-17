@@ -32,4 +32,4 @@ jobs:
 
     - name: Publish to NuGet
       run: |
-        nuget push UnmanagedLayerBulkRemover\UnmanagedLayerBulkRemover\nuget-output/*.nupkg -Source https://api.nuget.org/v3/index.json -ApiKey ${{ secrets.NUGET_API_KEY }}
+        nuget push ./UnmanagedLayerBulkRemover/nuget-output/*.nupkg -Source https://api.nuget.org/v3/index.json -ApiKey ${{ secrets.NUGET_API_KEY }}

@@ -29,7 +29,9 @@ jobs:
     - name: Pack NuGet package
       run: |
         nuget pack UnmanagedLayerBulkRemover/UnmanagedLayerBulkRemover.nuspec -Properties Configuration=Release -OutputDirectory ./nuget-output
-
+    - name: List files in nuget-output
+      run: dir ./nuget-output
+  
     - name: Publish to NuGet
       run: |
         nuget push ./nuget-output/*.nupkg -Source https://api.nuget.org/v3/index.json -ApiKey ${{ secrets.NUGET_API_KEY }}

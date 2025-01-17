@@ -59,7 +59,7 @@ namespace UnmanagedLayerBulkRemover
                     //    args.Cancel = true;
                     //}
                     string componentName = getComponentTypeName(((OptionSetValue)component["componenttype"]).Value);
-                    if (filteredComponents.Contains(componentName))
+                    if (componentName != null && filteredComponents.Contains(componentName))
                     {
                         result.Add(new LogLine($"Removing layer {componentName} with Id {component.Id}.. {Environment.NewLine}", Color.Green));
                         var req = new OrganizationRequest("RemoveActiveCustomizations");
@@ -366,7 +366,7 @@ namespace UnmanagedLayerBulkRemover
                 case 432:
                     return
                    "EntityImageConfiguration";
-                default: throw new Exception($"Unsupported component type number {componentType}");
+                default: return null;
             }
         }
     }

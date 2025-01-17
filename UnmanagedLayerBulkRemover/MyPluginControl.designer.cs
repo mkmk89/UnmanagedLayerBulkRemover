@@ -40,9 +40,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.unmanagedLayersDataGrid = new System.Windows.Forms.DataGridView();
             this.rtbLogs = new System.Windows.Forms.RichTextBox();
+            this.bannerBox = new System.Windows.Forms.PictureBox();
+            this.closeBanner = new System.Windows.Forms.Label();
             this.toolStripMenu.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.unmanagedLayersDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bannerBox)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripMenu
@@ -54,8 +57,8 @@
             this.tsbRemoveUnamangedLayers});
             this.toolStripMenu.Location = new System.Drawing.Point(0, 0);
             this.toolStripMenu.Name = "toolStripMenu";
-            this.toolStripMenu.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.toolStripMenu.Size = new System.Drawing.Size(960, 31);
+            this.toolStripMenu.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.toolStripMenu.Size = new System.Drawing.Size(1440, 34);
             this.toolStripMenu.TabIndex = 4;
             this.toolStripMenu.Text = "toolStrip1";
             // 
@@ -63,21 +66,21 @@
             // 
             this.tsbGetSolutions.Image = ((System.Drawing.Image)(resources.GetObject("tsbGetSolutions.Image")));
             this.tsbGetSolutions.Name = "tsbGetSolutions";
-            this.tsbGetSolutions.Size = new System.Drawing.Size(113, 28);
+            this.tsbGetSolutions.Size = new System.Drawing.Size(158, 29);
             this.tsbGetSolutions.Text = "Load Solutions";
             this.tsbGetSolutions.Click += new System.EventHandler(this.tsbGetSolutions_Click);
             // 
             // tssSeparator1
             // 
             this.tssSeparator1.Name = "tssSeparator1";
-            this.tssSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.tssSeparator1.Size = new System.Drawing.Size(6, 38);
             // 
             // tsbRemoveUnamangedLayers
             // 
             this.tsbRemoveUnamangedLayers.Image = ((System.Drawing.Image)(resources.GetObject("tsbRemoveUnamangedLayers.Image")));
             this.tsbRemoveUnamangedLayers.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbRemoveUnamangedLayers.Name = "tsbRemoveUnamangedLayers";
-            this.tsbRemoveUnamangedLayers.Size = new System.Drawing.Size(182, 28);
+            this.tsbRemoveUnamangedLayers.Size = new System.Drawing.Size(260, 33);
             this.tsbRemoveUnamangedLayers.Text = "Remove Unamanged Layers";
             this.tsbRemoveUnamangedLayers.Click += new System.EventHandler(this.tsbRemoveUnamangedLayers_Click);
             // 
@@ -96,30 +99,33 @@
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.unmanagedLayersDataGrid, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.rtbLogs, 2, 2);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(7, 34);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(10, 52);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(953, 525);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1430, 808);
             this.tableLayoutPanel2.TabIndex = 7;
             // 
             // lblOutput
             // 
             this.lblOutput.AutoSize = true;
-            this.lblOutput.Location = new System.Drawing.Point(574, 0);
+            this.lblOutput.Location = new System.Drawing.Point(862, 0);
+            this.lblOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOutput.Name = "lblOutput";
-            this.lblOutput.Size = new System.Drawing.Size(39, 13);
+            this.lblOutput.Size = new System.Drawing.Size(58, 20);
             this.lblOutput.TabIndex = 10;
             this.lblOutput.Text = "Output";
             // 
             // lblFilter
             // 
             this.lblFilter.AutoSize = true;
-            this.lblFilter.Location = new System.Drawing.Point(384, 0);
+            this.lblFilter.Location = new System.Drawing.Point(576, 0);
+            this.lblFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFilter.Name = "lblFilter";
-            this.lblFilter.Size = new System.Drawing.Size(127, 13);
+            this.lblFilter.Size = new System.Drawing.Size(190, 20);
             this.lblFilter.TabIndex = 9;
             this.lblFilter.Text = "Filter by component types";
             // 
@@ -219,17 +225,19 @@
             "EntityAnalyticsConfiguration",
             "AttributeImageConfiguration",
             "EntityImageConfiguration"});
-            this.clbFilters.Location = new System.Drawing.Point(384, 16);
+            this.clbFilters.Location = new System.Drawing.Point(576, 25);
+            this.clbFilters.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.clbFilters.Name = "clbFilters";
-            this.clbFilters.Size = new System.Drawing.Size(184, 514);
+            this.clbFilters.Size = new System.Drawing.Size(278, 786);
             this.clbFilters.TabIndex = 8;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Location = new System.Drawing.Point(4, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 13);
+            this.label2.Size = new System.Drawing.Size(113, 20);
             this.label2.TabIndex = 0;
             this.label2.Text = "Select solution";
             // 
@@ -244,7 +252,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.unmanagedLayersDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.unmanagedLayersDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.unmanagedLayersDataGrid.Location = new System.Drawing.Point(3, 16);
+            this.unmanagedLayersDataGrid.Location = new System.Drawing.Point(4, 25);
+            this.unmanagedLayersDataGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.unmanagedLayersDataGrid.MultiSelect = false;
             this.unmanagedLayersDataGrid.Name = "unmanagedLayersDataGrid";
             this.unmanagedLayersDataGrid.ReadOnly = true;
@@ -252,7 +261,7 @@
             this.unmanagedLayersDataGrid.RowHeadersWidth = 82;
             this.unmanagedLayersDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.unmanagedLayersDataGrid.ShowEditingIcon = false;
-            this.unmanagedLayersDataGrid.Size = new System.Drawing.Size(375, 514);
+            this.unmanagedLayersDataGrid.Size = new System.Drawing.Size(564, 791);
             this.unmanagedLayersDataGrid.TabIndex = 1;
             // 
             // rtbLogs
@@ -260,27 +269,55 @@
             this.rtbLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtbLogs.Location = new System.Drawing.Point(574, 16);
+            this.rtbLogs.Location = new System.Drawing.Point(862, 25);
+            this.rtbLogs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rtbLogs.Name = "rtbLogs";
-            this.rtbLogs.Size = new System.Drawing.Size(376, 514);
+            this.rtbLogs.Size = new System.Drawing.Size(564, 791);
             this.rtbLogs.TabIndex = 2;
             this.rtbLogs.Text = "";
             // 
+            // bannerBox
+            // 
+            this.bannerBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bannerBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.bannerBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bannerBox.Location = new System.Drawing.Point(804, 17);
+            this.bannerBox.Name = "bannerBox";
+            this.bannerBox.Size = new System.Drawing.Size(600, 250);
+            this.bannerBox.TabIndex = 8;
+            this.bannerBox.TabStop = false;
+            this.bannerBox.Visible = false;
+            // 
+            // closeBanner
+            // 
+            this.closeBanner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeBanner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.closeBanner.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closeBanner.Location = new System.Drawing.Point(1410, 17);
+            this.closeBanner.Name = "closeBanner";
+            this.closeBanner.Size = new System.Drawing.Size(20, 20);
+            this.closeBanner.TabIndex = 9;
+            this.closeBanner.Text = "X";
+            this.closeBanner.Visible = false;
+            // 
             // MyPluginControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.closeBanner);
+            this.Controls.Add(this.bannerBox);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.toolStripMenu);
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "MyPluginControl";
-            this.Size = new System.Drawing.Size(960, 562);
+            this.Size = new System.Drawing.Size(1440, 865);
             this.Load += new System.EventHandler(this.MyPluginControl_Load);
             this.toolStripMenu.ResumeLayout(false);
             this.toolStripMenu.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.unmanagedLayersDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bannerBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,5 +335,7 @@
         private System.Windows.Forms.CheckedListBox clbFilters;
         private System.Windows.Forms.Label lblOutput;
         private System.Windows.Forms.Label lblFilter;
+        private System.Windows.Forms.PictureBox bannerBox;
+        private System.Windows.Forms.Label closeBanner;
     }
 }

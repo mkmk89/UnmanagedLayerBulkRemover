@@ -14,6 +14,8 @@ using McTools.Xrm.Connection;
 using System.Activities.Expressions;
 using XrmToolBox.Extensibility.Args;
 using XrmToolBox.Extensibility.Interfaces;
+using System.Net.Http;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace UnmanagedLayerBulkRemover
 {
@@ -21,7 +23,6 @@ namespace UnmanagedLayerBulkRemover
     {
         private Settings mySettings;
         public event EventHandler<StatusBarMessageEventArgs> SendMessageToStatusBar;
-
 
         #region IGitHubPlugin implementation
 
@@ -34,6 +35,7 @@ namespace UnmanagedLayerBulkRemover
         public MyPluginControl()
         {
             InitializeComponent();
+            LoadAdBannerAsync();
             SelectDefaultFilters(new List<string>() {
             "Attribute",
             "Relationship",
@@ -206,5 +208,64 @@ namespace UnmanagedLayerBulkRemover
             foreach (string value in supportedFilters)
                 clbFilters.SetItemChecked(clbFilters.Items.IndexOf(value), true);
         }
+
+        private async Task LoadAdBannerAsync()
+        {
+            try
+            {
+                // Fetch ad details from Google Ad Manager API or your endpoint
+                var adDetails = await FetchAdDetailsAsync("http://ads.owware.com/unmanagedlayerremover");
+                if (adDetails != null && !string.IsNullOrEmpty(adDetails.ImageUrl))
+                {
+                    AddAdBanner(adDetails);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any errors during ad fetching (e.g., log or show a message)
+            }
+        }
+
+        private async Task<AdDetails> FetchAdDetailsAsync(string apiUrl)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                var response = await client.GetAsync(apiUrl);
+                if (response.IsSuccessStatusCode)
+                {
+                    // Deserialize response to get ad details (e.g., JSON to AdDetails object)
+                    var json = await response.Content.ReadAsStringAsync();
+                    return Newtonsoft.Json.JsonConvert.DeserializeObject<AdDetails>(json);
+                }
+            }
+            return null;
+        }
+
+        private void AddAdBanner(AdDetails adDetails)
+        {
+            bannerBox.ImageLocation = adDetails.ImageUrl;
+            bannerBox.Visible = true;
+            closeBanner.Visible = true;
+            closeBanner.Click += (sender, e) => { bannerBox.Visible = false; closeBanner.Visible = false;  };
+            // Handle click event for ad actions
+            bannerBox.Click += (sender, e) =>
+            {
+                if (!string.IsNullOrEmpty(adDetails.ClickUrl))
+                {
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = adDetails.ClickUrl,
+                        UseShellExecute = true
+                    });
+                }
+            };
+        }
+    }
+
+    // AdDetails class to deserialize API response
+    public class AdDetails
+    {
+        public string ImageUrl { get; set; }
+        public string ClickUrl { get; set; }
     }
 }

@@ -29,11 +29,11 @@ jobs:
     - name: Set version
       id: set_version
       run: |
-        # Get today's date in yyyy.MM.dd format using PowerShell, ensuring two digits for month and day
-        $VERSION_DATE = (Get-Date -Format "yyyy.MM.dd")
+        # Get today's date
+        $date = Get-Date
         
-        # Format the date to ensure two digits for month and day
-        $VERSION_DATE = $VERSION_DATE.PadLeft(10, "0") # Add leading zeros to make sure the format is yyyy.MM.dd
+        # Format the date to ensure two digits for the month and day
+        $VERSION_DATE = "{0:D4}.{1:D2}.{2:D2}" -f $date.Year, $date.Month, $date.Day
         
         # Incremental build number (using GitHub run number or a similar method)
         $INCREMENTAL_BUILD_NUMBER = $env:GITHUB_RUN_NUMBER

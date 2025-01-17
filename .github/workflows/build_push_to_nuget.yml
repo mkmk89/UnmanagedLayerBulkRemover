@@ -18,14 +18,14 @@ jobs:
       uses: nuget/setup-nuget@v2
 
     - name: Restore NuGet packages
-      run: nuget restore YourProject.sln
+      run: nuget restore UnmanagedLayerBulkRemover.sln
 
     - name: Build the solution
-      run: msbuild YourProject.sln /p:Configuration=Release
+      run: msbuild UnmanagedLayerBulkRemover.sln /p:Configuration=Release
 
     - name: Pack NuGet package
       run: |
-        nuget pack YourProject.nuspec -Properties Configuration=Release -OutputDirectory ./nuget-output
+        nuget pack UnmanagedLayerBulkRemover/UnmanagedLayerBulkRemover.nuspec.nuspec -Properties Configuration=Release -OutputDirectory ./nuget-output
 
     - name: Publish to NuGet
       env:

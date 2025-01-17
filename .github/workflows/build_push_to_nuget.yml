@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2019
 
     steps:
     - name: Checkout code
@@ -19,13 +19,7 @@ jobs:
 
     - name: Restore NuGet packages
       run: nuget restore UnmanagedLayerBulkRemover.sln
-    
-    - name: Install Visual Studio Build Tools
-      # Ensures MSBuild and .NET Framework tools are available
-      run: |
-        choco install visualstudio2022buildtools --params "--add Microsoft.VisualStudio.Workload.ManagedDesktopBuildTools --includeRecommended --includeOptional"
-        refreshenv
-
+  
     - name: Build the solution
       run: msbuild UnmanagedLayerBulkRemover.sln /p:Configuration=Release
 

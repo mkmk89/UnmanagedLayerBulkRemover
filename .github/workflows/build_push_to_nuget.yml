@@ -1,9 +1,6 @@
 name: Build and Publish XrmToolBox Plugin
 
 on:
-  push:
-    branches:
-      - master
   workflow_dispatch: # Allows manual triggering
 
 jobs:
@@ -46,9 +43,6 @@ jobs:
     - name: Pack NuGet package
       run: |
         nuget pack UnmanagedLayerBulkRemover/UnmanagedLayerBulkRemover.nuspec -Properties Configuration=Release -Version ${{ env.PACKAGE_VERSION }} -OutputDirectory ./nuget-output
-
-    - name: List files in nuget-output
-      run: dir ./nuget-output
 
     - name: Publish to NuGet
       run: |

@@ -34,12 +34,12 @@ jobs:
         
         # Incremental build number (using GitHub run number or a similar method)
         INCREMENTAL_BUILD_NUMBER=${GITHUB_RUN_NUMBER}
-
+    
         # Set the full version
         PACKAGE_VERSION="${VERSION_DATE}.${INCREMENTAL_BUILD_NUMBER}"
         
         echo "Package version: $PACKAGE_VERSION"
-
+    
         # Set the version to an environment variable for later steps
         echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
 
@@ -52,7 +52,5 @@ jobs:
 
     - name: Publish to NuGet
       run: |
-        $packageFiles = Get-ChildItem ./nuget-output/UnmanagedLayerBulkRemover.*.nupkg
-        foreach ($file in $packageFiles) {
-          nuget push $file.FullName -Source https://api.nuget.org/v3/index.json -ApiKey ${{ secrets.NUGET_API_KEY }}
-        }
+        # Ensure the .nupkg file is correctly referenced
+        nuget push "./nuget-output/UnmanagedLayerBulkRemover.*.nupkg" -Source https://api.nuget.org/v3/index.json -ApiKey ${{ secrets.NUGET_API_KEY }}

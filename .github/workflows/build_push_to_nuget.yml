@@ -52,5 +52,13 @@ jobs:
 
     - name: Publish to NuGet
       run: |
-        # Ensure the .nupkg file is correctly referenced
-        nuget push "./nuget-output/UnmanagedLayerBulkRemover.*.nupkg" -Source https://api.nuget.org/v3/index.json -ApiKey ${{ secrets.NUGET_API_KEY }}
+        # Find the .nupkg file in the nuget-output directory
+        $nupkg_file = Get-ChildItem -Path ./nuget-output -Filter *.nupkg | Select-Object -First 1
+        
+        if ($nupkg_file) {
+          # Push the .nupkg file to NuGet
+          nuget push $nupkg_file.FullName -Source https://api.nuget.org/v3/index.json -ApiKey ${{ secrets.NUGET_API_KEY }}
+        } else {
+          Write-Host "No .nupkg file found!"
+          exit 1
+        }

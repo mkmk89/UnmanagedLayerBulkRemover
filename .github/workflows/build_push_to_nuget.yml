@@ -20,9 +20,6 @@ jobs:
     - name: Restore NuGet packages
       run: nuget restore UnmanagedLayerBulkRemover.sln
   
-    - name: Build the solution
-      run: msbuild UnmanagedLayerBulkRemover.sln /p:Configuration=Release
-    
     - name: Set version
       id: set_version
       run: |
@@ -40,6 +37,9 @@ jobs:
         # Set the version to an environment variable for later steps
         echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $env:GITHUB_ENV
 
+    - name: Build the solution
+      run: msbuild UnmanagedLayerBulkRemover.sln /p:Configuration=Release /p:AssemblyVersion=${{ env.PACKAGE_VERSION }} /p:FileVersion=${{ env.PACKAGE_VERSION }} /p:InformationalVersion=${{ env.PACKAGE_VERSION }}
+    
     - name: Pack NuGet package
       run: |
         nuget pack UnmanagedLayerBulkRemover/UnmanagedLayerBulkRemover.nuspec -Properties Configuration=Release -Version ${{ env.PACKAGE_VERSION }} -OutputDirectory ./nuget-output

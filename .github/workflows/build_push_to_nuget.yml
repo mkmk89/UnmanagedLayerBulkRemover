@@ -16,10 +16,7 @@ jobs:
       
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v2
-  
-    - name: Restore NuGet packages
-      run: nuget restore UnmanagedLayerBulkRemover.sln
-  
+
     - name: Set version
       id: set_version
       run: |
@@ -37,6 +34,22 @@ jobs:
         # Set the version to an environment variable for later steps
         echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $env:GITHUB_ENV
 
+    - name: Update version dynamically
+      run: |
+        # Use PowerShell to update version in AssemblyInfo.cs
+        $packageVersion = $env:PACKAGE_VERSION
+        Write-Host "Updating AssemblyVersion and AssemblyFileVersion to $packageVersion"
+        # Get the content of the AssemblyInfo.cs file
+        $content = Get-Content "**/Properties/AssemblyInfo.cs"
+        # Replace AssemblyVersion and AssemblyFileVersion
+        $content = $content -replace '\[assembly: AssemblyVersion\(".*"\)\]', "[assembly: AssemblyVersion(`"$packageVersion`")]"
+        $content = $content -replace '\[assembly: AssemblyFileVersion\(".*"\)\]', "[assembly: AssemblyFileVersion(`"$packageVersion`")]"
+        # Save the updated content back to the file
+        Set-Content "**/Properties/AssemblyInfo.cs" $content
+    
+    - name: Restore NuGet packages
+      run: nuget restore UnmanagedLayerBulkRemover.sln
+  
     - name: Build the solution
       run: msbuild UnmanagedLayerBulkRemover.sln /p:Configuration=Release /p:AssemblyVersion=${{ env.PACKAGE_VERSION }} /p:FileVersion=${{ env.PACKAGE_VERSION }} /p:InformationalVersion=${{ env.PACKAGE_VERSION }}
     
